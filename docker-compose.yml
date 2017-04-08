@@ -1,0 +1,41 @@
+#app docker containers
+flask_frontend_skeleton:
+  build: /vagrant/apps/flask_frontend_skeleton
+  ports:
+    - "5000:8000"
+  volumes:
+    - /vagrant/apps/flask_frontend_skeleton:/opt
+  environment:
+    - APP_NAME=flask_frontend_skeleton
+    - FLASK_LOG_LEVEL=DEBUG
+    - PYTHONPATH=/opt
+
+flask_api_skeleton:
+  build: /vagrant/apps/flask_api_skeleton
+  ports:
+    - "5100:8000"
+  volumes:
+    - /vagrant/apps/flask_api_skeleton:/opt
+  environment:
+    - APP_NAME=flask_api_skeleton
+    - FLASK_LOG_LEVEL=DEBUG
+    - PYTHONPATH=/opt
+    - SQLALCHEMY_USER=flask_api_skeleton_user
+    - SQLALCHEMY_PASSWORD=password
+    - SQLALCHEMY_HOST=postgres
+    - SQLALCHEMY_PORT=5432
+    - SQLALCHEMY_DB=flask_api_skeleton
+    - SQLALCHEMY_MIGRATE_REPO=/opt/db_repository
+  links:
+    - postgres
+
+acceptance-tests:
+  build: /vagrant/apps/acceptance-tests
+  volumes:
+    - /vagrant/apps/acceptance-tests:/opt
+
+#commodities docker containers
+postgres:
+  build: /vagrant/commodities/postgres
+  ports:
+    - "5432:5432"

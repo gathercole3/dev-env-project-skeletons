@@ -1,0 +1,14 @@
+applications:
+  flask_frontend_skeleton:
+    repo: git@github.com:gathercole3/flask-frontend-skeleton.git
+    branch: master
+  flask_api_skeleton:
+    repo: git@github.com:gathercole3/flask-api-skeleton.git
+    branch: master
+  acceptance-tests:
+    repo: git@github.com:gathercole3/ruby-acceptance-tests-skeleton.git
+    branch: master
+commodities:
+  postgres:
+    repo: git@github.com:gathercole3/commodity-dev-postgres.git
+    branch: master
