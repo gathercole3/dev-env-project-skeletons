@@ -13,4 +13,4 @@ docker exec devenvproject_postgres_1 psql --command "CREATE USER flask_api_skele
 docker exec devenvproject_postgres_1 psql --command "CREATE DATABASE flask_api_skeleton OWNER flask_api_skeleton_user;"
 
 #setup databases
-docker exec devenvproject_flask_api_skeleton_1 python3 db_scripts/db_create.py
+docker exec devenvproject_flask_api_skeleton_1 flask db upgrade

@@ -1,23 +1,24 @@
 #app docker containers
 flask_frontend_skeleton:
-  build: /vagrant/apps/flask_frontend_skeleton
+  build: /vagrant/apps/flask-frontend-skeleton
   ports:
     - "5000:8000"
   volumes:
-    - /vagrant/apps/flask_frontend_skeleton:/opt
+    - /vagrant/apps/flask-frontend-skeleton:/opt
   environment:
-    - APP_NAME=flask_frontend_skeleton
+    - APP_NAME=flask-frontend-skeleton
     - FLASK_LOG_LEVEL=DEBUG
     - PYTHONPATH=/opt
 
 flask_api_skeleton:
-  build: /vagrant/apps/flask_api_skeleton
+  build: /vagrant/apps/flask-api-skeleton
   ports:
     - "5100:8000"
   volumes:
-    - /vagrant/apps/flask_api_skeleton:/opt
+    - /vagrant/apps/flask-api-skeleton:/opt
   environment:
-    - APP_NAME=flask_api_skeleton
+    - APP_NAME=flask-api-skeleton
+    - FLASK_APP=manage.py
     - FLASK_LOG_LEVEL=DEBUG
     - PYTHONPATH=/opt
     - SQLALCHEMY_USER=flask_api_skeleton_user
@@ -28,6 +29,16 @@ flask_api_skeleton:
     - SQLALCHEMY_MIGRATE_REPO=/opt/db_repository
   links:
     - postgres
+
+php-frontend-skeleton:
+  build: /vagrant/apps/php-frontend-skeleton
+  ports:
+    - "5001:80"
+  volumes:
+    - /vagrant/apps/php-frontend-skeleton/data:/var/www/html
+  environment:
+    - NGINX_GENERATE_DEFAULT_VHOST=true
+    - APP_NAME=php-frontend-skeleton
 
 acceptance-tests:
   build: /vagrant/apps/acceptance-tests
